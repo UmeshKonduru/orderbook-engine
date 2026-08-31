@@ -30,7 +30,7 @@ find_package(GTest REQUIRED)
 # ---------------------------------------------------------
 add_library(orderbook_core STATIC
     src/book/order_pool.cpp
-    # src/book/order_lookup.cpp
+    src/book/order_lookup.cpp
     # src/book/order_book.cpp
     # src/book/price_level_lookups/flat_map.cpp
 )
@@ -42,7 +42,7 @@ enable_testing()
 
 add_executable(unit_tests
     tests/book/test_order_pool.cpp
-    # tests/book/test_order_lookup.cpp
+    tests/book/test_order_lookup.cpp
     # tests/book/test_order_book.cpp
     # tests/book/price_level_lookups/test_flat_map.cpp
 )
