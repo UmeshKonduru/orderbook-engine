@@ -5,6 +5,7 @@ project(OrderBookEngine VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Aggressive compiler optimization flags for HFT performance
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
@@ -32,7 +33,7 @@ add_library(orderbook_core STATIC
     src/book/order_pool.cpp
     src/book/order_lookup.cpp
     # src/book/order_book.cpp
-    # src/book/price_level_lookups/flat_map.cpp
+    src/book/price_level_lookups/flat_map.cpp
 )
 
 # ---------------------------------------------------------
@@ -44,7 +45,7 @@ add_executable(unit_tests
     tests/book/test_order_pool.cpp
     tests/book/test_order_lookup.cpp
     # tests/book/test_order_book.cpp
-    # tests/book/price_level_lookups/test_flat_map.cpp
+    tests/book/price_level_lookups/test_flat_map.cpp
 )
 
 # Link the core library and GTest to the test executable

@@ -9,8 +9,8 @@ struct Order {
     Quantity quantity;
     Side     side;
 
-    OrderIndex next;
-    OrderIndex prev;
+    OrderIndex next = kInvalidIndex;
+    OrderIndex prev = kInvalidIndex;
 };
 
 }
