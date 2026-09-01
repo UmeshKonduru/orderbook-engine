@@ -24,7 +24,7 @@ include_directories(include)
 
 # Find system-installed GTest and Google Benchmark
 find_package(GTest REQUIRED)
-# find_package(benchmark REQUIRED) # Uncomment once benchmark files are created
+find_package(benchmark REQUIRED)
 
 # ---------------------------------------------------------
 # 1. Core Engine Target (Static Library)
@@ -58,8 +58,7 @@ gtest_discover_tests(unit_tests)
 # ---------------------------------------------------------
 # 3. Performance Benchmark Targets
 # ---------------------------------------------------------
-# add_executable(bench_pool benchmarks/bench_pool.cpp)
-# target_link_libraries(bench_pool PRIVATE orderbook_core benchmark::benchmark_main)
 
-# add_executable(bench_book benchmarks/bench_book.cpp)
-# target_link_libraries(bench_book PRIVATE orderbook_core benchmark::benchmark_main)
+
+add_executable(bench_book benchmarks/bench_book.cpp)
+target_link_libraries(bench_book PRIVATE orderbook_core benchmark::benchmark)
