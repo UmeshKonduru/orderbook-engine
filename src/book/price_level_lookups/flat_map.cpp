@@ -16,17 +16,27 @@ void FlatMapPriceLevelLookup::insert(Price price, PriceLevel* level) {
 }
 
 void FlatMapPriceLevelLookup::erase(Price price) noexcept {
-    levels_.erase(price); // no-op if price is absent
+    levels_.erase(price);
 }
 
 PriceLevel* FlatMapPriceLevelLookup::min() const noexcept {
-    if (levels_.empty()) return nullptr;
-    return levels_.begin()->second;
+    return levels_.empty() ? nullptr : levels_.begin()->second;
 }
 
 PriceLevel* FlatMapPriceLevelLookup::max() const noexcept {
-    if (levels_.empty()) return nullptr;
-    return std::prev(levels_.end())->second;
+    return levels_.empty() ? nullptr : levels_.rbegin()->second;
+}
+
+PriceLevel* FlatMapPriceLevelLookup::next_below(Price price) const noexcept {
+    auto it = levels_.lower_bound(price);
+    if (it == levels_.begin()) return nullptr;
+    --it;
+    return it->second;
+}
+
+PriceLevel* FlatMapPriceLevelLookup::next_above(Price price) const noexcept {
+    auto it = levels_.upper_bound(price);
+    return it == levels_.end() ? nullptr : it->second;
 }
 
 std::size_t FlatMapPriceLevelLookup::size() const noexcept {

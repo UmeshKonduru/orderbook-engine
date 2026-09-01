@@ -19,6 +19,9 @@ public:
     PriceLevel* min() const noexcept;
     PriceLevel* max() const noexcept;
 
+    PriceLevel* next_below(Price price) const noexcept;
+    PriceLevel* next_above(Price price) const noexcept;
+
     std::size_t size() const noexcept;
     bool empty() const noexcept;
 
